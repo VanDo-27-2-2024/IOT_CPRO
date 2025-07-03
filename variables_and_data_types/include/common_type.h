@@ -4,7 +4,6 @@
 #include "stdint.h"
 #include <stdio.h>
 
-// #define LOG_INFO(msg)   printf("[INFO] %s\n", msg)
 #define LOG_INFO(msg, ...) printf("[INFO  ]  " msg "\n", ##__VA_ARGS__)
 #define LOG_SENSOR_INFO(msg, ...) printf("[INFO][SENSOR]  " msg "\n", ##__VA_ARGS__)
 #define LOG_PUMP_INFO(msg, ...) printf("[INFO][PUMP  ]  " msg "\n", ##__VA_ARGS__)
