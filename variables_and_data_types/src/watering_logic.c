@@ -15,7 +15,7 @@ result_t handle_button(void)
     system_mode_t mode;
     mode = get_system_mode();
 
-    if (is_button1_pressed()) // Button1 is used for switching MODE
+    if (is_mod_button_pressed())
     {
         if (mode == MODE_AUTO)
         {
@@ -35,7 +35,7 @@ result_t handle_button(void)
         return res;
     }
 
-    if (is_button2_pressed() &&  mode == MODE_MANUAL) // Button2 is used for turning on the PUMP on MODE_MANUAL
+    if (is_pump_button_pressed() &&  mode == MODE_MANUAL)
     {
         res = set_pump_state(PUMP_ON);
         if (res != SUCCESS)

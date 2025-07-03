@@ -7,13 +7,13 @@ result_t init_GPIO_button(void)
     return SUCCESS;
 }
 
-bool is_button1_pressed()
+bool is_mod_button_pressed()
 {
     // Simulate button operation
     return false;
 }
 
-bool is_button2_pressed()
+bool is_pump_button_pressed()
 {
     // Simulate button operation
     return false;

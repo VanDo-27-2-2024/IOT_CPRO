@@ -4,7 +4,7 @@
 #include "common_type.h"
 
 result_t init_GPIO_button(void);
-bool is_button1_pressed();
-bool is_button2_pressed();
+bool is_mod_button_pressed();
+bool is_pump_button_pressed();
 
 #endif // BUTTONS_H

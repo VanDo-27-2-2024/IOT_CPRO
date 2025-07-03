@@ -4,7 +4,7 @@ static led_t led_state;
 
 result_t init_GPIO_led(void)
 {
-    LOG_LED_INFO("Init config for LEDLED");
+    LOG_LED_INFO("Init config for LED");
 
     led_state = LED_NORMAL;
     // TODO: set GPIO pin for led
