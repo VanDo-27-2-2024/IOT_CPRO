@@ -1,1 +1,14 @@
 .vscode/
+
+# Build folders
+dist/
+build/
+out/
+bin/
+
+# Output of compile process
+*.exe
+*.dll
+*.so
+*.a
+*.o
