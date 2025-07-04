@@ -41,8 +41,12 @@ result_t handle_button(void)
         if (res != SUCCESS)
         {
             LOG_ERR("Fail to turn ON the PUMP");
+            set_led_state(LED_ERROR);
+
             return res;
         }
+
+        set_led_state(LED_WATERING);
         LOG_PUMP_INFO("Turn ON the PUMP");
 
         sleep(DELAY_TIME_MS / 1000);
@@ -51,8 +55,12 @@ result_t handle_button(void)
         if (res != SUCCESS)
         {
             LOG_ERR("Fail to turn OFF the PUMP");
+            set_led_state(LED_ERROR);
+
             return res;
         }
+
+        set_led_state(LED_NORMAL);
         LOG_PUMP_INFO("Turn OFF the PUMP");
     }
 
