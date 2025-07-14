@@ -16,10 +16,9 @@ typedef uint32_t system_time_t;
 
 typedef struct system_info
 {
-    actuator_state_t pump_state;
     config_t system_config;
+    actuator_state_t pump_state;
     led_t led_state;
-    sensor_info_t sensor_info;
 } system_info_t;
 
 result_t init_system(system_info_t* system_info);
