@@ -5,6 +5,8 @@
 #include "config.h"
 #include "actuators.h"
 #include "time.h"
+#include <time.h>
+#include <stdlib.h>
 
 const char* mode_to_str[] =
 {
@@ -18,13 +20,22 @@ const char* pump_state_to_str[] =
     [PUMP_ON]  = "ON"
 };
 
-result_t init_system(void)
+const char* led_state_to_str[] =
 {
-    result_t res;
+    [LED_NORMAL] = "LED_NORMAL",
+    [LED_WATERING] = "LED_WATERING",
+    [LED_ERROR] = "LED_ERROR"
+};
 
-    init_default_config();
+result_t init_system(system_info_t* system_info)
+{
+    result_t res = SUCCESS;
 
-    res = init_GPIO_led();
+    srand(time(NULL)); // For random value of sensor simulation
+
+    init_default_config(&system_info->system_config);
+
+    res = init_GPIO_led(&system_info->led_state);
     if (res != SUCCESS)
     {
         LOG_ERR("Fail to init resource for LED");
@@ -36,16 +47,22 @@ result_t init_system(void)
         LOG_ERR("Fail to init resource for BUTTON");
     }
 
-    res = init_GPIO_pump();
+    res = init_GPIO_pump(&system_info->pump_state);
     if (res != SUCCESS)
     {
         LOG_ERR("Fail to init resource for PUMP");
     }
 
+    res = init_GPIO_sensor();
+    if (res != SUCCESS)
+    {
+        LOG_ERR("Fail to init SENSOR");
+    }
+
     return SUCCESS;
 }
 
-void log_system_operatioin(sensor_info_t sensor_info, config_t sys_config, actuator_state_t pump_state)
+void log_system_operation(sensor_info_t sensor_info, config_t sys_config, actuator_state_t pump_state)
 {
     printf("--->>>\n");
     printf("[INFO][SYSTEM]  Moisture: %hhu*C  PUMP state: %s  system mode: %s \n",

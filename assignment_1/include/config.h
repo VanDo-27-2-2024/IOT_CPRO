@@ -19,11 +19,9 @@ typedef struct config
     system_mode_t system_mode;
 } config_t;
 
-void init_default_config(void);
-void change_config(void);
-void show_config(void);
-void change_system_mode(system_mode_t mode);
-system_mode_t get_system_mode();
-config_t get_system_config();
+void init_default_config(config_t* system_config);
+void change_config(config_t* system_config);
+void show_config(const config_t* system_config);
+void change_system_mode(system_mode_t new_mode, system_mode_t* mode);
 
 #endif // CONFIG_H

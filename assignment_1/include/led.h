@@ -10,7 +10,7 @@ typedef enum led
     LED_ERROR = 2
 } led_t;
 
-result_t init_GPIO_led(void);
-result_t set_led_state(led_t led_state);
+result_t init_GPIO_led(led_t* led_state);
+result_t set_led_state(led_t new_state, led_t* led_state);
 
 #endif // LED_H
