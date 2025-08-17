@@ -7,6 +7,6 @@
 #include "utils.h"
 
 result_t handle_button(system_info_t* system_info);
-result_t handle_sensor(sensor_info_t sensor_info, system_info_t* system_info);
+result_t handle_sensor(system_info_t* system_info);
 
 #endif // LOGIC_H

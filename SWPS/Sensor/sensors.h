@@ -10,6 +10,5 @@ typedef struct sensor_info
 } sensor_info_t;
 
 result_t init_GPIO_sensor(void);
-sensor_info_t read_all_sensors(void);
 
 #endif // SENSORS_H

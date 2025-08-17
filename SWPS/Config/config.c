@@ -8,10 +8,10 @@ void init_default_config(config_t* system_config)
 
     *system_config = (config_t)
     {
-        .moisture_min_threshold  = 30,
-        .moisture_max_threshold  = 85,
-        .max_watering_time_s     = 4,
-        .sensor_check_interval_s = 6,
+        .moisture_min_threshold  = 30, // (%)
+        .moisture_max_threshold  = 85, // (%)
+        .max_watering_time_s     = 5,  // (s)
+        .sensor_check_interval_s = 8,  // (s)
         .system_mode = MODE_AUTO
     };
 }
