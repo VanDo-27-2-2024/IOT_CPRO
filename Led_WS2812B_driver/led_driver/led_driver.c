@@ -64,4 +64,49 @@ void led_set_pixel_color(size_t index, uint8_t r, uint8_t g, uint8_t b)
 }
 
 
+void led_fill(uint8_t r, uint8_t g, uint8_t b)
+{
+    if (led_strip_p == NULL)
+    {
+        return;
+    }
 
+    /*
+     * Note: Gán trực tiếp mà không dùng hàm led_set_pixel_color vì:
+     *       - Bỏ qua những check không cần thiết
+     *       - Chỉ cần gói màu 1 lần thôi -> tránh lặp -> chậm code
+     */
+    uint32_t color = ((uint32_t)g << 16) | ((uint32_t)r << 8) | (uint32_t)b;
+    for (int i = 0; i < led_strip_p->led_length; i++)
+    {
+        led_strip_p->color_strip[i].color = color;
+    }
+}
+
+
+void led_clear()
+{
+    led_fillfill(0, 0, 0);
+}
+
+
+const uint32_t* led_get_buffer()
+{
+    if (led_strip_p == NULL)
+    {
+        return NULL;
+    }
+
+    return (const uint32_t*)(led_strip_p->color_strip);
+}
+
+
+size_t led_get_pixel_count()
+{
+    if (led_strip_p == NULL)
+    {
+        return;
+    }
+
+    return led_strip_p->led_length;
+}

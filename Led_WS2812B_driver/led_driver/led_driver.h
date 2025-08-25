@@ -14,7 +14,7 @@ typedef struct color_data_structure
 typedef struct led_strip
 {
     color_data_structure_t *color_strip;
-    uint16_t led_length;
+    size_t led_length;
 } led_strip_t;
 
 
