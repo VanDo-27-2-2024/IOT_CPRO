@@ -41,17 +41,17 @@ int main()
     if (color_buffer[0] != 0x0000FF00U) {
         printf("Test FAIL: index 0 expected 0x0000FF00\n");
         led_shutdown();
-        return 1;
+        return -1;
     }
     if (color_buffer[9] != 0x000000FFU) {
         printf("Test FAIL: index 9 expected 0x000000FF\n");
         led_shutdown();
-        return 1;
+        return -1;
     }
     if (color_buffer[5] != 0x00FFFFFFU) {
         printf("Test FAIL: index 4 expected 0x00FFFFFF\n");
         led_shutdown();
-        return 1;
+        return -1;
     }
 
     printf("Individual color checks PASS\n");
