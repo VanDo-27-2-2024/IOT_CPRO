@@ -4,7 +4,7 @@ static led_strip_t *led_strip_p;
 
 int led_init(size_t num_pixels)
 {
-    if (num_pixels == 0)
+    if (num_pixels <= 0)
     {
         printf("Invalid pixels size\n");
         return -1;
@@ -60,7 +60,7 @@ void led_set_pixel_color(size_t index, uint8_t r, uint8_t g, uint8_t b)
     }
 
     uint32_t color = ((uint32_t)g << 16) | ((uint32_t)r << 8) | (uint32_t)b; // Format: 0x00GGRRBB
-    (led_strip_p->color_strip + index)->color = color;
+    *(led_strip_p->color_strip + index) = color;
 }
 
 
@@ -77,16 +77,16 @@ void led_fill(uint8_t r, uint8_t g, uint8_t b)
      *       - Chỉ cần gói màu 1 lần thôi -> tránh lặp -> chậm code
      */
     uint32_t color = ((uint32_t)g << 16) | ((uint32_t)r << 8) | (uint32_t)b;
-    for (int i = 0; i < led_strip_p->led_length; i++)
+    for (size_t i = 0; i < led_strip_p->led_length; i++)
     {
-        led_strip_p->color_strip[i].color = color;
+        led_strip_p->color_strip[i] = color;
     }
 }
 
 
 void led_clear()
 {
-    led_fillfill(0, 0, 0);
+    led_fill(0, 0, 0);
 }
 
 
@@ -105,7 +105,7 @@ size_t led_get_pixel_count()
 {
     if (led_strip_p == NULL)
     {
-        return;
+        return 0;
     }
 
     return led_strip_p->led_length;
