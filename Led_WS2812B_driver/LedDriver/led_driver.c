@@ -11,13 +11,7 @@ int led_init(size_t num_pixels)
     }
 
     // Free old buffer if already initialized to avoid memory leak
-    if (led_strip_p != NULL)
-    {
-        free(led_strip_p->color_strip);
-        // led_strip_p->color_strip = NULL; // unnecessary -> cuz the struct is gone when free led_strip_p
-        free(led_strip_p);
-        led_strip_p = NULL;
-    }
+    led_shutdown();
 
     led_strip_p = malloc(sizeof(led_strip_t));
     if (led_strip_p == NULL)
